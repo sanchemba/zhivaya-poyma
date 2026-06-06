@@ -10,23 +10,46 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#3!hn2y!6i7$$!iy0$-sdle#fx@@d9@bj^@y&d)p36x@rdo^25'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-dev-only')
+#'django-insecure-#3!hn2y!6i7$$!iy0$-sdle#fx@@d9@bj^@y&d)p36x@rdo^25'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+#DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['живаяпойма.рф', 'XN--80AAEPKIVOI3N.XN--P1AI']
+ALLOWED_HOSTS = [
+    'живаяпойма.рф',
+    'www.живаяпойма.рф',
+    'xn--80aaepkivoi3n.xn--p1ai',
+    'www.xn--80aaepkivoi3n.xn--p1ai',
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://живаяпойма.рф',
+    'https://www.живаяпойма.рф',
+    'https://xn--80aaepkivoi3n.xn--p1ai',
+    'https://www.xn--80aaepkivoi3n.xn--p1ai',
+]
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_REFERRER_POLICY = 'same-origin'
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 86400
 
 # Application definition
 
@@ -115,4 +138,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR.parent.parent / 'public_html' / 'static'
