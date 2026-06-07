@@ -27,10 +27,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-dev-only')
 #'django-insecure-#3!hn2y!6i7$$!iy0$-sdle#fx@@d9@bj^@y&d)p36x@rdo^25'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
+#DEBUG = True
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
     'живаяпойма.рф',
     'www.живаяпойма.рф',
     'xn--80aaepkivoi3n.xn--p1ai',
@@ -44,11 +46,11 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.xn--80aaepkivoi3n.xn--p1ai',
 ]
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_REFERRER_POLICY = 'same-origin'
-SECURE_SSL_REDIRECT = True
+SECURE_REFERRER_POLICY = "same-origin"
+SECURE_SSL_REDIRECT = not DEBUG
 SECURE_HSTS_SECONDS = 86400
 
 # Application definition
@@ -60,6 +62,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    "core",
+    "news",
+    "leads",
 ]
 
 MIDDLEWARE = [
@@ -76,14 +82,14 @@ ROOT_URLCONF = 'zhivaya_poyma.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
@@ -125,17 +131,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = "ru-ru"
+TIME_ZONE = "Europe/Moscow"
 USE_I18N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR.parent.parent / 'public_html' / 'static'
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "public_html" / "static"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Живая пойма — бобры, дубравы и река{% endblock %}
+
+{% block content %}
+<section class="hero container">
+    <h1>Живая пойма: бобры, дубравы и река</h1>
+    <p>
+        Проект о восстановлении живой речной среды, леса и экосистемы вокруг поймы.
+    </p>
+    <div class="hero-actions">
+        <a class="button primary" href="{% url 'join' %}">Присоединиться</a>
+        <a class="button secondary" href="{% url 'about' %}">Узнать больше</a>
+    </div>
+</section>
+
+<section class="container">
+    <h2>Зачем это нужно</h2>
+    <p>Мы рассказываем, как восстановление природных процессов помогает возвращать жизнь целой территории.</p>
+</section>
+
+<section class="container">
+    <h2>Последние новости</h2>
+    {% for post in latest_news %}
+        <article class="card">
+            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+            <p>{{ post.excerpt }}</p>
+        </article>
+    {% empty %}
+        <p>Новости скоро появятся.</p>
+    {% endfor %}
+</section>
+{% endblock %}

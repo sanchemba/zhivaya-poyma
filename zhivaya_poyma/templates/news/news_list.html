@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Новости{% endblock %}
+{% block content %}
+<section class="container">
+    <h1>Новости</h1>
+    {% for post in posts %}
+        <article class="card">
+            <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+            <p>{{ post.excerpt }}</p>
+            <p>{{ post.published_at|date:"d.m.Y" }}</p>
+        </article>
+    {% empty %}
+        <p>Пока нет опубликованных новостей.</p>
+    {% endfor %}
+</section>
+{% endblock %}

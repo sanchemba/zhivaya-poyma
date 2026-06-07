@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Присоединиться{% endblock %}
+{% block content %}
+<section class="container">
+    <h1>Присоединиться</h1>
+    <p>Оставьте контакт, и мы свяжемся с вами.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button primary" type="submit">Отправить</button>
+    </form>
+</section>
+{% endblock %}
