@@ -283,7 +283,15 @@ main,
   line-height: 0.92;
   color: var(--text);
   margin-bottom: 24px;
-  max-width: 10ch;
+  max-width: 20ch;
+
+  text-align: left;         /* Текст внутри выровнен по левому краю */
+  margin-inline: auto;      /* Центрирует сам блок по горизонтали */
+  margin-bottom: 24px;      /* Возвращаем ваш отступ снизу */
+  
+  /* Коррекция (опционально): сдвигает блок чуть левее центра 
+     для лучшего визуального восприятия */
+  transform: translateX(-5%); 
 }
 
 .hero-text {
