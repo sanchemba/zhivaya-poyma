@@ -282,7 +282,6 @@ main,
   font-size: clamp(50px, 7.4vw, 104px);
   line-height: 0.92;
   color: var(--text);
-  margin-bottom: 24px;
   max-width: 20ch;
 
   text-align: left;         /* Текст внутри выровнен по левому краю */
@@ -291,7 +290,7 @@ main,
   
   /* Коррекция (опционально): сдвигает блок чуть левее центра 
      для лучшего визуального восприятия */
-  transform: translateX(-5%); 
+  /*transform: translateX(-5%); */
 }
 
 .hero-text {
