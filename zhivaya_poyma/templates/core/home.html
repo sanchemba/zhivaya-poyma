@@ -1,33 +1,225 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}Живая пойма — бобры, дубравы и река{% endblock %}
+{% block title %}Живая Пойма{% endblock %}
+{% block meta_description %}Живая Пойма — открытый дневник проекта по восстановлению экосистемы, среды жизни и природных связей в пойме.{% endblock %}
 
 {% block content %}
-<section class="hero container">
-    <h1>Живая пойма: бобры, дубравы и река</h1>
-    <p>
-        Проект о восстановлении живой речной среды, леса и экосистемы вокруг поймы.
-    </p>
-    <div class="hero-actions">
-        <a class="button primary" href="{% url 'join' %}">Присоединиться</a>
-        <a class="button secondary" href="{% url 'about' %}">Узнать больше</a>
+
+<section class="hero" aria-labelledby="hero-title">
+  
+
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <p class="eyebrow">Открытый дневник проекта</p>
+
+      <h1 class="hero-title" id="hero-title">
+        Восстановление экосистемы — это больше, чем просто посадка деревьев
+      </h1>
+
+      <p class="hero-text">
+        Живая Пойма показывает, как шаг за шагом можно возвращать среду жизни:
+        через деревья, воду, укрытия, биоразнообразие, наблюдение и бережное участие людей.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#diary" class="btn btn-primary">Смотреть дневник</a>
+        <a href="#about" class="btn btn-secondary">О проекте</a>
+      </div>
     </div>
+  </div>
 </section>
 
-<section class="container">
-    <h2>Зачем это нужно</h2>
-    <p>Мы рассказываем, как восстановление природных процессов помогает возвращать жизнь целой территории.</p>
+<section id="about" class="section section--soft" aria-labelledby="about-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">О проекте</p>
+      <h2 class="section-title" id="about-title">
+        Публичный проект о возвращении живой среды
+      </h2>
+      <p class="section-text">
+        Это открытый дневник восстановления природной территории. Мы хотим наглядно показывать,
+        что посадка деревьев важна не сама по себе, а как часть более широкой работы по возвращению
+        связей между почвой, водой, растительностью, птицами, насекомыми и другими видами.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <article class="soft-card">
+        <h3>Открыто и по шагам</h3>
+        <p class="section-text">
+          Проект развивается как живой журнал: с наблюдениями, заметками, фото, видео и фиксацией изменений во времени.
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Не только деревья</h3>
+        <p class="section-text">
+          Мы говорим не просто о посадке, а о восстановлении целой экосистемы, в которой важны среда, связи и естественные процессы.
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Место для наблюдения</h3>
+        <p class="section-text">
+          Сайт станет витриной проекта, где можно будет видеть материалы с территории, в том числе фото и видео наблюдения.
+        </p>
+      </article>
+    </div>
+  </div>
 </section>
 
-<section class="container">
-    <h2>Последние новости</h2>
-    {% for post in latest_news %}
-        <article class="card">
-            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-            <p>{{ post.excerpt }}</p>
-        </article>
-    {% empty %}
-        <p>Новости скоро появятся.</p>
-    {% endfor %}
+<section id="mission" class="section" aria-labelledby="mission-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Миссия</p>
+      <h2 class="section-title" id="mission-title">
+        Показывать, как восстановление природы работает в реальности
+      </h2>
+      <p class="section-text">
+        Rewilding и восстановление экосистем — это не разовая акция, а процесс возвращения природных функций,
+        биоразнообразия и устойчивых связей внутри территории. Мы хотим рассказывать об этом просто, наглядно
+        и без лишнего пафоса — через реальные шаги, наблюдения и долгий горизонт работы.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <article class="soft-card">
+        <h3>Восстановление связей</h3>
+        <p class="section-text">
+          Важны не отдельные объекты, а то, как вместе работают вода, почва, растения, укрытия и виды, которые возвращаются в среду.
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Популяризация охраны природы</h3>
+        <p class="section-text">
+          Проект объясняет, почему охрана природы и восстановление местообитаний важны не в теории, а в конкретной живой местности.
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Доказательство через наблюдение</h3>
+        <p class="section-text">
+          Фото, видео, полевые заметки и, возможно, фотоловушки помогут показывать процесс честно и убедительно.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="diary" class="section section--soft" aria-labelledby="diary-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Дневник проекта</p>
+      <h2 class="section-title" id="diary-title">
+        Хроника наблюдений, изменений и работы на месте
+      </h2>
+      <p class="section-text">
+        Это главный живой раздел сайта. Здесь появляются выезды, посадки, сезонные изменения,
+        полевые заметки и наблюдения за тем, как территория меняется со временем.
+      </p>
+    </div>
+
+    {% if latest_news %}
+      <div class="content-grid diary-grid">
+        {% for post in latest_news %}
+          <article class="soft-card diary-card">
+            <p class="diary-meta">{{ post.published_at|date:"d E Y" }}</p>
+
+            <h3 class="diary-card__title">
+              <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </h3>
+
+            {% if post.excerpt %}
+              <p class="section-text diary-card__text">{{ post.excerpt }}</p>
+            {% else %}
+              <p class="section-text diary-card__text">
+                {{ post.body|striptags|truncatechars:180 }}
+              </p>
+            {% endif %}
+
+            <div class="diary-card__footer">
+              <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Читать запись</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <div style="margin-top: 32px;">
+        <a href="{% url 'news:news_list' %}" class="btn btn-primary">Перейти в дневник</a>
+      </div>
+    {% else %}
+      <div class="soft-card diary-empty">
+        <h3>Дневник скоро наполнится</h3>
+        <p class="section-text">
+          Здесь появятся первые записи о ходе проекта, наблюдения, фото и заметки с территории.
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section id="materials" class="section" aria-labelledby="materials-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Материалы</p>
+      <h2 class="section-title" id="materials-title">
+        Фото, видео и наблюдения, которые не теряются в ленте
+      </h2>
+      <p class="section-text">
+        Этот раздел нужен для более постоянного контента: фотогалерей, видео, записей с фотоловушек,
+        объясняющих текстов и визуальных материалов, к которым хочется возвращаться отдельно от новостной хроники.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <article class="soft-card">
+        <h3>Фотоархив</h3>
+        <p class="section-text">
+          Серии снимков территории, растений, следов жизни и изменений ландшафта.
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Видео и фотоловушки</h3>
+        <p class="section-text">
+          Видео с выездов, наблюдений и, если получится, материалы с фотоловушек как отдельная важная витрина проекта.
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Объясняющие материалы</h3>
+        <p class="section-text">
+          Тексты и заметки о восстановлении экосистем, местообитаниях, rewilding и природных процессах простым языком.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="help" class="section section--soft" aria-labelledby="help-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Поддержка проекта</p>
+      <h2 class="section-title" id="help-title">
+        Проекту можно помочь участием, вниманием и ресурсами
+      </h2>
+      <p class="section-text">
+        Поддержка нужна не только в виде финансирования. Это может быть техника, фото- и видеопомощь,
+        экспертные советы, распространение информации и участие в развитии проекта.
+      </p>
+    </div>
+
+    <div class="soft-card">
+      <h3>Стать частью проекта</h3>
+      <p class="section-text" style="margin-bottom: 24px;">
+        Здесь можно рассказать, чем именно сейчас полезна поддержка: помощь с материалами,
+        партнёрство, техника, фотоловушки, участие в полевых выездах или информационная поддержка.
+      </p>
+
+      <a href="/join/" class="btn btn-primary">Поддержать проект</a>
+    </div>
+  </div>
 </section>
 {% endblock %}

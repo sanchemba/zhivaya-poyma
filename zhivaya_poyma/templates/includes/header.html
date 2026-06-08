@@ -1,11 +1,19 @@
+{% load static %}
+
 <header class="site-header">
-    <div class="container">
-        <a class="logo" href="{% url 'home' %}">Живая пойма</a>
-        <nav>
-            <a href="{% url 'about' %}">О проекте</a>
-            <a href="{% url 'news_list' %}">Новости</a>
-            <a href="{% url 'join' %}">Присоединиться</a>
-            <a href="{% url 'contacts' %}">Контакты</a>
-        </nav>
-    </div>
+  <div class="container site-header__inner">
+    <a href="/" class="site-logo" aria-label="Живая Пойма — на главную">
+      Живая Пойма
+    </a>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a href="/#about">О проекте</a>
+      <a href="/#mission">Миссия</a>
+      <a href="/news/">Дневник</a>
+      <a href="/#materials">Материалы</a>
+      <a href="/join/">Поддержка</a>
+    </nav>
+
+    <a href="/join/" class="btn btn-primary site-header__cta">Поддержать</a>
+  </div>
 </header>

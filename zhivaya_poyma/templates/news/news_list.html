@@ -1,16 +1,59 @@
 {% extends "base.html" %}
-{% block title %}Новости{% endblock %}
+{% load static %}
+
+{% block title %}Дневник проекта — Живая Пойма{% endblock %}
+{% block meta_description %}Дневник проекта Живая Пойма: новости, полевые заметки, наблюдения и этапы восстановления экосистемы.{% endblock %}
+
 {% block content %}
-<section class="container">
-    <h1>Новости</h1>
-    {% for post in posts %}
-        <article class="card">
-            <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-            <p>{{ post.excerpt }}</p>
-            <p>{{ post.published_at|date:"d.m.Y" }}</p>
-        </article>
-    {% empty %}
-        <p>Пока нет опубликованных новостей.</p>
-    {% endfor %}
+<section class="section section--soft" aria-labelledby="diary-page-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Дневник проекта</p>
+      <h1 class="section-title" id="diary-page-title">
+        Хроника наблюдений, изменений и работы на месте
+      </h1>
+      <p class="section-text">
+        Здесь собираются записи о проекте: выезды, посадки, сезонные изменения,
+        полевые заметки, фото- и видеоматериалы, а также наблюдения за тем,
+        как территория меняется со временем.
+      </p>
+    </div>
+
+    {% if posts %}
+      <div class="content-grid diary-grid">
+        {% for post in posts %}
+          <article class="soft-card diary-card">
+            <p class="diary-meta">{{ post.published_at|date:"d E Y" }}</p>
+
+            <h2 class="diary-card__title">
+              <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </h2>
+
+            {% if post.excerpt %}
+              <p class="section-text diary-card__text">{{ post.excerpt }}</p>
+            {% else %}
+              <p class="section-text diary-card__text">
+                {{ post.body|striptags|truncatechars:220 }}
+              </p>
+            {% endif %}
+
+            <div class="diary-card__footer">
+              <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">
+                Читать запись
+              </a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="soft-card diary-empty">
+        <h2>Дневник скоро наполнится</h2>
+        <p class="section-text">
+          Здесь появятся записи о ходе проекта, наблюдения, фото, видео и заметки с территории.
+        </p>
+        <a href="/" class="btn btn-primary">Вернуться на главную</a>
+      </div>
+    {% endif %}
+  </div>
 </section>
 {% endblock %}
