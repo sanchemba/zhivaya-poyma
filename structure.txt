@@ -1,0 +1,178 @@
+
+C:\workspace_py\zhivaya_poyma\
+|   .gitignore
+|   requirements.txt
+|   structure.txt
+|   
++---.venv
+|   |   .gitignore
+|   |   pyvenv.cfg
+|   |   
+|   +---Include
+|   +---Lib                 
+|   \---Scripts
+|           
+\---zhivaya_poyma
+    |   .env
+    |   .gitignore
+    |   db.sqlite3
+    |   manage.py
+    |   passenger_wsgi.py
+    |   README.md
+    |   requirements.txt
+    |   
+    +---core
+    |   |   admin.py
+    |   |   apps.py
+    |   |   models.py
+    |   |   tests.py
+    |   |   urls.py
+    |   |   views.py
+    |   |   __init__.py
+    |   |   
+    |   +---migrations
+    |   |   |   __init__.py
+    |   |   |   
+    |   |   \---__pycache__
+    |   |           __init__.cpython-313.pyc
+    |   |           
+    |   \---__pycache__
+    |           admin.cpython-313.pyc
+    |           apps.cpython-313.pyc
+    |           models.cpython-313.pyc
+    |           urls.cpython-313.pyc
+    |           views.cpython-313.pyc
+    |           __init__.cpython-313.pyc
+    |           
+    +---leads
+    |   |   admin.py
+    |   |   apps.py
+    |   |   forms.py
+    |   |   models.py
+    |   |   tests.py
+    |   |   urls.py
+    |   |   views.py
+    |   |   __init__.py
+    |   |   
+    |   +---migrations
+    |   |   |   0001_initial.py
+    |   |   |   __init__.py
+    |   |   |   
+    |   |   \---__pycache__
+    |   |           0001_initial.cpython-313.pyc
+    |   |           __init__.cpython-313.pyc
+    |   |           
+    |   \---__pycache__
+    |           admin.cpython-313.pyc
+    |           apps.cpython-313.pyc
+    |           forms.cpython-313.pyc
+    |           models.cpython-313.pyc
+    |           urls.cpython-313.pyc
+    |           views.cpython-313.pyc
+    |           __init__.cpython-313.pyc
+    |           
+    +---media
+    +---news
+    |   |   admin.py
+    |   |   apps.py
+    |   |   models.py
+    |   |   tests.py
+    |   |   urls.py
+    |   |   views.py
+    |   |   __init__.py
+    |   |   
+    |   +---migrations
+    |   |   |   0001_initial.py
+    |   |   |   __init__.py
+    |   |   |   
+    |   |   \---__pycache__
+    |   |           0001_initial.cpython-313.pyc
+    |   |           __init__.cpython-313.pyc
+    |   |           
+    |   \---__pycache__
+    |           admin.cpython-313.pyc
+    |           apps.cpython-313.pyc
+    |           models.cpython-313.pyc
+    |           urls.cpython-313.pyc
+    |           views.cpython-313.pyc
+    |           __init__.cpython-313.pyc
+    |           
+    +---public_html
+    |   \---static
+    +---static
+    |   +---css
+    |   |       site.css
+    |   |       
+    |   +---img
+    |   |   |   autumn-falling-leaves.svg
+    |   |   |   big-set-of-cute-leaves.svg
+    |   |   |   vecteezy_big-set-of-cute-leaves-from-different-kind-of-trees_10058200-0.eps
+    |   |   |   
+    |   |   \---SVG
+    |   |           Asset 1.svg
+    |   |           Asset 10.svg
+    |   |           Asset 11.svg
+    |   |           Asset 12.svg
+    |   |           Asset 13.svg
+    |   |           Asset 14.svg
+    |   |           Asset 15.svg
+    |   |           Asset 16.svg
+    |   |           Asset 17.svg
+    |   |           Asset 18.svg
+    |   |           Asset 19.svg
+    |   |           Asset 2.svg
+    |   |           Asset 20.svg
+    |   |           Asset 21.svg
+    |   |           Asset 22.svg
+    |   |           Asset 23.svg
+    |   |           Asset 24.svg
+    |   |           Asset 25.svg
+    |   |           Asset 26.svg
+    |   |           Asset 27.svg
+    |   |           Asset 28.svg
+    |   |           Asset 29.svg
+    |   |           Asset 3.svg
+    |   |           Asset 30.svg
+    |   |           Asset 4.svg
+    |   |           Asset 5.svg
+    |   |           Asset 6.svg
+    |   |           Asset 7.svg
+    |   |           Asset 8.svg
+    |   |           Asset 9.svg
+    |   |           
+    |   \---js
+    |           site.js
+    |           
+    +---templates
+    |   |   base.html
+    |   |   
+    |   +---core
+    |   |       about.html
+    |   |       contacts.html
+    |   |       home.html
+    |   |       
+    |   +---includes
+    |   |       footer.html
+    |   |       header.html
+    |   |       messages.html
+    |   |       
+    |   +---leads
+    |   |       join.html
+    |   |       
+    |   \---news
+    |           news_detail.html
+    |           news_list.html
+    |           
+    \---zhivaya_poyma
+        |   asgi.py
+        |   settings.py
+        |   urls.py
+        |   wsgi.py
+        |   __init__.py
+        |   
+        \---__pycache__
+                settings.cpython-313.pyc
+                urls.cpython-313.pyc
+                wsgi.cpython-313.pyc
+                __init__.cpython-313.pyc
+                
