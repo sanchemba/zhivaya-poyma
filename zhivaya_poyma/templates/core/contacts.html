@@ -1,9 +1,68 @@
 {% extends "base.html" %}
-{% block title %}Контакты{% endblock %}
+
+{% block title %}Контакты — Живая Пойма{% endblock %}
+{% block meta_description %}Контакты проекта Живая Пойма: связь по вопросам участия, партнёрства, материалов и сотрудничества.{% endblock %}
+
 {% block content %}
-<section class="container">
-    <h1>Контакты</h1>
-    <p>Email: hello@example.org</p>
-    <p>Telegram: @example</p>
+<section class="section section--soft" aria-labelledby="contacts-page-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Контакты</p>
+      <h1 class="section-title" id="contacts-page-title">
+        Связаться с проектом
+      </h1>
+      <p class="section-text">
+        Если вы хотите поддержать проект, предложить партнёрство, рассказать о нас,
+        помочь с материалами или задать вопрос, напишите нам удобным способом.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <article class="soft-card">
+        <h3>Email</h3>
+        <p class="section-text">
+          Для общих вопросов, предложений, партнёрства и длинных писем.
+        </p>
+        <p class="section-text">
+          <a href="mailto:hello@xn--80aaepkivoi3n.xn--p1ai">hello@живаяпойма.рф</a>
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Telegram</h3>
+        <p class="section-text">
+          Для быстрого контакта, уточнений и оперативной связи.
+        </p>
+        <p class="section-text">
+          <a href="https://t.me/rehabiru?direct" target="_blank" rel="noopener noreferrer">@rehabiru</a>
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>По каким вопросам писать</h3>
+        <p class="section-text">
+          Участие в выездах, информационная поддержка, медиа, партнёрство, техника,
+          фотоловушки, фото- и видеосъёмка, вопросы о проекте и наблюдениях.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="contact-note-title">
+  <div class="container">
+    <div class="soft-card">
+      <h2 class="section-title" id="contact-note-title">
+        Если не знаете, с чего начать
+      </h2>
+      <p class="section-text" style="margin-bottom: 24px;">
+        Просто коротко расскажите, чем вы хотите быть полезны: поучаствовать в выезде,
+        поддержать проект информационно, предложить партнёрство или помочь техникой и материалами.
+        Если вам удобнее, можно не писать письмо, а оставить заявку через форму участия.
+      </p>
+
+      <a href="/join/" class="btn btn-primary">Перейти к форме участия</a>
+    </div>
+  </div>
 </section>
 {% endblock %}
