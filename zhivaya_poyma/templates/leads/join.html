@@ -1,14 +1,154 @@
 {% extends "base.html" %}
-{% block title %}Присоединиться{% endblock %}
-{% block content %}
-<section class="container">
-    <h1>Присоединиться</h1>
-    <p>Оставьте контакт, и мы свяжемся с вами.</p>
 
-    <form method="post">
+{% block title %}Поддержать проект — Живая Пойма{% endblock %}
+{% block meta_description %}Оставьте заявку, если хотите поддержать проект Живая Пойма участием, партнёрством, медиапомощью или ресурсами.{% endblock %}
+
+{% block content %}
+<section class="section section--soft" aria-labelledby="join-page-title">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Поддержка проекта</p>
+      <h1 class="section-title" id="join-page-title">
+        Стать частью Живой Поймы
+      </h1>
+      <p class="section-text">
+        Проекту можно помочь участием в выездах, партнёрством, медиаподдержкой,
+        техникой, материалами или другими ресурсами. Оставьте заявку, и мы свяжемся
+        с вами, чтобы обсудить удобный формат участия.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <article class="soft-card">
+        <h3>Практическое участие</h3>
+        <p class="section-text">
+          Выезды, посадки, уход за молодым лесом, помощь на месте и участие
+          в живой работе на территории.
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Партнёрство и ресурсы</h3>
+        <p class="section-text">
+          Поддержка техникой, материалами, транспортом, оборудованием,
+          экспертной или организационной помощью.
+        </p>
+      </article>
+
+      <article class="soft-card">
+        <h3>Информационная поддержка</h3>
+        <p class="section-text">
+          Публикации, съёмка, тексты, рассказы о проекте, медиа и распространение информации.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="join-form-title">
+  <div class="container">
+    <div class="soft-card">
+      <h2 class="section-title" id="join-form-title">
+        Оставить заявку
+      </h2>
+      <p class="section-text" style="margin-bottom: 24px;">
+        Напишите немного о себе и о том, чем вы хотите помочь.
+        Достаточно оставить хотя бы один способ связи — email или Telegram.
+      </p>
+
+      <form method="post" novalidate>
         {% csrf_token %}
-        {{ form.as_p }}
-        <button class="button primary" type="submit">Отправить</button>
-    </form>
+
+        {% if form.non_field_errors %}
+          <div class="form-errors" style="margin-bottom: 20px;">
+            {% for error in form.non_field_errors %}
+              <p class="section-text" style="color: #964219; margin-bottom: 8px;">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="form-row" style="margin-bottom: 20px;">
+          <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+          {{ form.name }}
+          {% if form.name.help_text %}
+            <p class="section-text" style="margin-top: 8px;">{{ form.name.help_text }}</p>
+          {% endif %}
+          {% if form.name.errors %}
+            {% for error in form.name.errors %}
+              <p class="section-text" style="color: #964219; margin-top: 8px;">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="form-row" style="margin-bottom: 20px;">
+          <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+          {{ form.email }}
+          {% if form.email.help_text %}
+            <p class="section-text" style="margin-top: 8px;">{{ form.email.help_text }}</p>
+          {% endif %}
+          {% if form.email.errors %}
+            {% for error in form.email.errors %}
+              <p class="section-text" style="color: #964219; margin-top: 8px;">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="form-row" style="margin-bottom: 20px;">
+          <label for="{{ form.telegram.id_for_label }}">{{ form.telegram.label }}</label>
+          {{ form.telegram }}
+          {% if form.telegram.help_text %}
+            <p class="section-text" style="margin-top: 8px;">{{ form.telegram.help_text }}</p>
+          {% endif %}
+          {% if form.telegram.errors %}
+            {% for error in form.telegram.errors %}
+              <p class="section-text" style="color: #964219; margin-top: 8px;">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="form-row" style="margin-bottom: 20px;">
+          <label for="{{ form.interest_type.id_for_label }}">{{ form.interest_type.label }}</label>
+          {{ form.interest_type }}
+          {% if form.interest_type.help_text %}
+            <p class="section-text" style="margin-top: 8px;">{{ form.interest_type.help_text }}</p>
+          {% endif %}
+          {% if form.interest_type.errors %}
+            {% for error in form.interest_type.errors %}
+              <p class="section-text" style="color: #964219; margin-top: 8px;">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <div class="form-row" style="margin-bottom: 28px;">
+          <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
+          {{ form.message }}
+          {% if form.message.help_text %}
+            <p class="section-text" style="margin-top: 8px;">{{ form.message.help_text }}</p>
+          {% endif %}
+          {% if form.message.errors %}
+            {% for error in form.message.errors %}
+              <p class="section-text" style="color: #964219; margin-top: 8px;">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <button class="btn btn-primary" type="submit">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section--soft" aria-labelledby="after-send-title">
+  <div class="container">
+    <div class="soft-card">
+      <h2 class="section-title" id="after-send-title">
+        Что будет после отправки
+      </h2>
+      <p class="section-text">
+        Мы получим вашу заявку, посмотрим, какой формат участия вам ближе,
+        и свяжемся с вами по указанному контакту, чтобы обсудить детали.
+      </p>
+    </div>
+  </div>
 </section>
 {% endblock %}
