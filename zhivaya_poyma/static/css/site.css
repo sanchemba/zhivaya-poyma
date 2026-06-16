@@ -127,6 +127,13 @@ h3,
 }
 .section-actions {
   margin-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.section-actions .btn {
+  align-self: flex-start;
 }
 
 p {
