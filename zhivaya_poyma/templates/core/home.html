@@ -22,9 +22,10 @@
         через деревья, воду, укрытия, биоразнообразие, наблюдение и бережное участие людей.
       </p>
 
+      
       <div class="hero__actions">
         <a href="#diary" class="btn btn-primary">Смотреть дневник</a>
-        <a href="#about" class="btn btn-secondary">О проекте</a>
+        <a href="{% url 'core:about' %}" class="btn btn-secondary">Подробнее о проекте</a>
       </div>
     </div>
   </div>
@@ -66,6 +67,11 @@
         </p>
       </article>
     </div>
+  </div>
+  <div class="section-actions">
+    <a href="{% url 'core:about' %}" class="btn btn-secondary">
+      Читать подробнее о проекте
+    </a>
   </div>
 </section>
 
