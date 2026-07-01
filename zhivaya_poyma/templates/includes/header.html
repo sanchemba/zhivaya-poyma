@@ -2,13 +2,36 @@
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href="{% url 'core:home' %}" class="site-logo">Живая Пойма</a>
+    <a href="/" class="site-logo">Живая Пойма</a>
 
     <nav class="site-nav" aria-label="Основная навигация">
-      <a href="{% url 'core:home' %}">Главная</a>
-      <a href="{% url 'core:about' %}">О проекте</a>
-      <a href="{% url 'news:news_list' %}">Дневник</a>
-      <a href="{% url 'core:contacts' %}">Контакты</a>
+      <a href="#about">О проекте</a>
+      <a href="#mission">Миссия</a>
+      <a href="#diary">Дневник</a>
+      <a href="#materials">Материалы</a>
+      <a href="#support">Поддержка</a>
     </nav>
+
+    <button
+      class="mobile-menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Открыть меню"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <div class="container mobile-menu__inner">
+      <a href="#about">О проекте</a>
+      <a href="#mission">Миссия</a>
+      <a href="#diary">Дневник</a>
+      <a href="#materials">Материалы</a>
+      <a href="#support">Поддержка</a>
+    </div>
   </div>
 </header>
