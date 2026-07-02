@@ -54,3 +54,4 @@ class NewsPost(models.Model):
         new_name = f"{original_name}.jpg"
 
         return ContentFile(buffer.read(), name=new_name)
+        

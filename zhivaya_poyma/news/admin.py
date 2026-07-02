@@ -21,3 +21,4 @@ class NewsPostAdmin(admin.ModelAdmin):
             "fields": ("is_published", "published_at", "created_at")
         }),
     )
+    
