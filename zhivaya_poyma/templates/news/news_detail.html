@@ -31,7 +31,7 @@
       {% endif %}
 
       <div class="post-body">
-        {{ post.body|linebreaks }}
+        {{ post.body|safe }}
       </div>
 
       <div class="post-footer">
