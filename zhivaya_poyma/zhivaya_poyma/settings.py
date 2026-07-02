@@ -160,8 +160,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # Папка, куда будут сохраняться загруженные файлы
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
 CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_FORCE_JPEG_COMPRESSION = True
+CKEDITOR_IMAGE_QUALITY = 80
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+CKEDITOR_THUMBNAIL_SIZE = (300, 300)
 
 CKEDITOR_CONFIGS = {
     "default": {
@@ -170,6 +173,7 @@ CKEDITOR_CONFIGS = {
         "toolbarCanCollapse": False,
         "forcePasteAsPlainText": True,
         "removePlugins": "stylesheetparser",
+        "filebrowserUploadUrl": "/ckeditor/upload/",
         "toolbar": [
             [
                 "Format",
