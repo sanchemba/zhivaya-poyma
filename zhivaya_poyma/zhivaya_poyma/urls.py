@@ -24,6 +24,7 @@ urlpatterns = [
     path("", include("core.urls")),
     path("news/", include("news.urls")),
     path("join/", include("leads.urls")),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

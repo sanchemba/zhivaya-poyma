@@ -66,6 +66,9 @@ INSTALLED_APPS = [
     "core",
     "news",
     "leads",
+
+    "ckeditor",
+    "ckeditor_uploader"
 ]
 
 MIDDLEWARE = [
@@ -115,21 +118,7 @@ DATABASES = {
         },
     }
 }
-"""
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "j93531404_zhivaya_poyma",
-        "USER": "j93531404_admin",
-        "PASSWORD": "sandeR057859!",
-        "HOST": "localhost",
-        "PORT": "3306",
-        "OPTIONS": {
-            "charset": "utf8mb4",
-        },
-    }
-}
-"""
+
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -168,3 +157,38 @@ STATIC_ROOT = BASE_DIR.parent.parent / "public_html" / "static"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Папка, куда будут сохраняться загруженные файлы
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "width": "100%",
+        "height": 420,
+        "toolbarCanCollapse": False,
+        "forcePasteAsPlainText": True,
+        "removePlugins": "stylesheetparser",
+        "toolbar": [
+            [
+                "Format",
+                "Bold", "Italic", "Underline", "Strike",
+                "-",
+                "NumberedList", "BulletedList",
+                "-",
+                "Outdent", "Indent",
+                "-",
+                "Blockquote", "HorizontalRule",
+                "-",
+                "Link", "Unlink",
+                "-",
+                "Image", "Table",
+                "-",
+                "Undo", "Redo",
+                "-",
+                "RemoveFormat", "Maximize", "Source",
+            ],
+        ],
+    },
+}
