@@ -229,7 +229,7 @@ main,
 .site-logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   text-decoration: none;
   color: var(--text);
 }
@@ -242,9 +242,9 @@ main,
 
 .site-logo__wordmark {
   font-family: 'Boska', serif;
-  font-size: 36px;
+  font-size: 34px;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
 }
 
 .site-logo__image {
