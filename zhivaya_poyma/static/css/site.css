@@ -216,7 +216,7 @@ main,
 .site-nav a:focus-visible::after {
   transform: scaleX(1);
 }
-
+/*
 .site-logo {
   color: var(--text);
   text-decoration: none;
@@ -224,6 +224,27 @@ main,
   font-size: 32px;
   line-height: 1;
   white-space: nowrap;
+}
+*/
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.site-logo__image {
+  display: block;
+  width: auto;
+  height: 48px;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .site-logo__image {
+    height: 40px;
+  }
 }
 
 .site-nav {
