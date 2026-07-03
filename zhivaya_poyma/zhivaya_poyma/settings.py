@@ -73,7 +73,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # <-- строго сюда
+#    'whitenoise.middleware.WhiteNoiseMiddleware',  # <-- строго сюда
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -157,13 +157,14 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR.parent.parent / "public_html" / "static"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 #MEDIA_ROOT = '/home/users/j/j93531404/domains/xn--80aaepkivoi3n.xn--p1ai/media/'
 #MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR.parent.parent / "public_html" / "media"
 
 # Разрешаем WhiteNoise обрабатывать не только статику, но и медиа-файлы
-WHITENOISE_AUTOREFRESH = True
-WHITENOISE_USE_FINDERS = True
+#WHITENOISE_AUTOREFRESH = True
+#WHITENOISE_USE_FINDERS = True
 
 # Папка, куда будут сохраняться загруженные файлы
 CKEDITOR_UPLOAD_PATH = "uploads/"
