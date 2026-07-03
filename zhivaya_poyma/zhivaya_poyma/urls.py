@@ -15,8 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path  # Импортируем re_path
-from django.views.static import serve  # Импортируем serve
+
 from django.conf import settings
 from django.conf.urls.static import static
 from news.ckeditor_views import ckeditor_image_upload
@@ -33,6 +32,3 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += [
-    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-]
