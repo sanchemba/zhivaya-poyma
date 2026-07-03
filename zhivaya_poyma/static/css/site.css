@@ -229,9 +229,22 @@ main,
 .site-logo {
   display: inline-flex;
   align-items: center;
-  flex-shrink: 0;
+  gap: 8px;
   text-decoration: none;
   color: var(--text);
+}
+
+.site-logo__mark {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.site-logo__wordmark {
+  font-family: 'Boska', serif;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 
 .site-logo__image {
