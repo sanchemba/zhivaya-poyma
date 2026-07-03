@@ -156,7 +156,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR.parent.parent / "public_html" / "static"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = '/home/users/j/j93531404/domains/xn--80aaepkivoi3n.xn--p1ai/media/'
+#MEDIA_ROOT = BASE_DIR / "media"
 
 # Папка, куда будут сохраняться загруженные файлы
 CKEDITOR_UPLOAD_PATH = "uploads/"
