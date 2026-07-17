@@ -1,0 +1,8 @@
+<div class="entry-cta">
+    {% if self.url %}
+        <a class="btn btn-primary" href="{{ self.url }}" target="_blank" rel="noopener noreferrer">{{ self.text }}</a>
+    {% endif %}
+    {% if self.note %}
+        <p class="cta-note">{{ self.note }}</p>
+    {% endif %}
+</div>

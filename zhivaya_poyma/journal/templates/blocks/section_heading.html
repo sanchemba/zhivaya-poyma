@@ -1,0 +1,9 @@
+<section class="content-section-heading">
+    {% if self.eyebrow %}
+        <p class="section-kicker">{{ self.eyebrow }}</p>
+    {% endif %}
+    <h2>{{ self.title }}</h2>
+    {% if self.text %}
+        <p>{{ self.text }}</p>
+    {% endif %}
+</section>

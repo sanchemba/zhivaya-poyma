@@ -52,6 +52,8 @@ SECURE_REFERRER_POLICY = "same-origin"
 SECURE_SSL_REDIRECT = not DEBUG
 SECURE_HSTS_SECONDS = 86400
 
+WAGTAIL_SITE_NAME = "Живая Пойма"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -66,8 +68,25 @@ INSTALLED_APPS = [
     "news",
     "leads",
 
+    # wagtail
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail",
+    "modelcluster",
+    "taggit",
+
     "ckeditor",
-    "ckeditor_uploader"
+    "ckeditor_uploader",
+
+    "journal",
 ]
 
 MIDDLEWARE = [
@@ -79,6 +98,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
 ROOT_URLCONF = 'zhivaya_poyma.urls'
@@ -93,6 +113,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },

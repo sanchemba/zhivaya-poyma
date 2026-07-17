@@ -1,0 +1,14 @@
+<aside class="observation-block">
+    {% if self.title %}
+        <h2>{{ self.title }}</h2>
+    {% endif %}
+
+    <p>{{ self.text }}</p>
+
+    {% if self.date_label or self.place %}
+        <p class="observation-meta">
+            {% if self.date_label %}<span>{{ self.date_label }}</span>{% endif %}
+            {% if self.place %}<span>{{ self.place }}</span>{% endif %}
+        </p>
+    {% endif %}
+</aside>

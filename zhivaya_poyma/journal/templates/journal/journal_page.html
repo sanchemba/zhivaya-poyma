@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{{ page.title }} — Живая Пойма{% endblock %}
+
+{% block content %}
+<section class="journal-entry section">
+    <div class="container container-narrow">
+        <p class="section-kicker">Дневник проекта</p>
+        <h1 class="section-title">{{ page.title }}</h1>
+
+        {% if page.subtitle %}
+            <p class="entry-subtitle">{{ page.subtitle }}</p>
+        {% endif %}
+
+        {% if page.lead %}
+            <div class="entry-lead">
+                <p>{{ page.lead }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="container container-narrow entry-stream">
+        {% for block in page.body %}
+            {% include_block block %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,15 @@
+<section class="progress-note">
+    <h2>{{ self.stage }}</h2>
+
+    {% if self.done %}
+        <p><strong>Сделано:</strong> {{ self.done }}</p>
+    {% endif %}
+
+    {% if self.seen %}
+        <p><strong>Наблюдаем:</strong> {{ self.seen }}</p>
+    {% endif %}
+
+    {% if self.next_step %}
+        <p><strong>Дальше:</strong> {{ self.next_step }}</p>
+    {% endif %}
+</section>

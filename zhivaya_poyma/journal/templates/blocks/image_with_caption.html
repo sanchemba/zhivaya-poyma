@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+
+<figure class="entry-figure">
+    {% image self.image width-1400 as img %}
+    <img src="{{ img.url }}" alt="{{ self.caption|default:self.image.title }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy">
+    {% if self.caption or self.credit %}
+        <figcaption>
+            {% if self.caption %}<span>{{ self.caption }}</span>{% endif %}
+            {% if self.credit %}<span>{{ self.credit }}</span>{% endif %}
+        </figcaption>
+    {% endif %}
+</figure>

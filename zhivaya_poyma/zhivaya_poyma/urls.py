@@ -20,11 +20,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 from news.ckeditor_views import ckeditor_image_upload
 
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.documents import urls as wagtaildocs_urls
+from wagtail import urls as wagtail_urls
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls")),
     path("news/", include("news.urls")),
     path("join/", include("leads.urls")),
+
+    path("cms/", include(wagtailadmin_urls)),
+    path("documents/", include(wagtaildocs_urls)),
+    path("journal/", include(wagtail_urls)),
 
     path("ckeditor/upload/", ckeditor_image_upload, name="ckeditor_image_upload"),
     path("ckeditor/", include("ckeditor_uploader.urls")),
