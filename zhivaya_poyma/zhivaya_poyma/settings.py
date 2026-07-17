@@ -38,12 +38,11 @@ ALLOWED_HOSTS = [
     'xn--80aaepkivoi3n.xn--p1ai',
     'www.xn--80aaepkivoi3n.xn--p1ai',
 ]
-
 CSRF_TRUSTED_ORIGINS = [
-    'https://живаяпойма.рф',
-    'https://www.живаяпойма.рф',
-    'https://xn--80aaepkivoi3n.xn--p1ai',
-    'https://www.xn--80aaepkivoi3n.xn--p1ai',
+    "https://xn--80aaepkivoi3n.xn--p1ai",
+    "https://www.xn--80aaepkivoi3n.xn--p1ai",
+    "https://живаяпойма.рф",
+    "https://www.живаяпойма.рф",
 ]
 
 SESSION_COOKIE_SECURE = not DEBUG

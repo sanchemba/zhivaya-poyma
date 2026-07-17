@@ -9,6 +9,7 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.utils.text import get_valid_filename
+from django.views.decorators.csrf import csrf_exempt
 from PIL import Image, ImageOps
 
 
@@ -21,8 +22,7 @@ def _compress_uploaded_image(uploaded_file):
     elif img.mode != "RGB":
         img = img.convert("RGB")
 
-    max_size = (1800, 1800)
-    img.thumbnail(max_size, Image.Resampling.LANCZOS)
+    img.thumbnail((1800, 1800), Image.Resampling.LANCZOS)
 
     buffer = BytesIO()
     img.save(buffer, format="JPEG", quality=80, optimize=True, progressive=True)
@@ -35,6 +35,7 @@ def _compress_uploaded_image(uploaded_file):
     return ContentFile(buffer.read(), name=filename)
 
 
+@csrf_exempt
 @staff_member_required
 def ckeditor_image_upload(request):
     if request.method != "POST" or "upload" not in request.FILES:
