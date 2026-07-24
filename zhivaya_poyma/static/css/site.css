@@ -873,6 +873,11 @@ main,
     line-height: 1.5;
 }
 
+.entry-stream p {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 /* =========================
    Django messages
    Добавить в конец site.css
