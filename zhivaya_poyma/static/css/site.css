@@ -850,6 +850,30 @@ main,
 }
 
 /* =========================
+   Wagtail styles 
+   for entries
+   ========================= */
+
+.entry-figure {
+    margin: 2rem 0;
+}
+
+.entry-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+}
+
+.entry-figcaption {
+    margin-top: 0.75rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* =========================
    Django messages
    Добавить в конец site.css
    ========================= */
