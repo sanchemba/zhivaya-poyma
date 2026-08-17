@@ -53,6 +53,7 @@ SECURE_SSL_REDIRECT = not DEBUG
 SECURE_HSTS_SECONDS = 86400
 
 WAGTAIL_SITE_NAME = "Живая Пойма"
+WAGTAILADMIN_BASE_URL = "https://xn--80aaepkivoi3n.xn--p1ai/cms"
 
 # Application definition
 
