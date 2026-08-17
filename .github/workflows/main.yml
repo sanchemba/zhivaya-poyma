@@ -18,7 +18,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             # Переходим в папку с проектом
-            cd /home/users/j/j93531404/domains/xn--80aaepkivoi3n.xn--p1ai/zhivaya-poyma/zhivaya_poyma
+            cd /home/users/j/j93531404/domains/xn--80aaepkivoi3n.xn--p1ai/zhivaya-poyma/zhivaya_poyma/zhivaya_poyma
             
             # Активируем виртуальное окружение (подставьте свой путь)
             source /home/users/j/j93531404/domains/xn--80aaepkivoi3n.xn--p1ai/.venv/python313/bin/activate
@@ -27,7 +27,7 @@ jobs:
             git pull origin main
             
             # Устанавливаем новые зависимости, если они появились
-            pip install -r requirements.txt
+            #pip install -r requirements.txt
             
             # Выполняем рутинные команды Django
             python manage.py check
@@ -37,4 +37,4 @@ jobs:
             
             # Перезапускаем веб-сервер (gunicorn, uwsgi или touch wsgi.py)
             # Например, для перезапуска Django на Jino Спектр часто достаточно:
-            touch zhivaya_poyma/wsgi.py
+            touch zhivaya_poyma/zhivaya_poyma/wsgi.py
