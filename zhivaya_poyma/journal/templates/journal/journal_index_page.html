@@ -4,61 +4,74 @@
 {% block title %}{{ page.title }} — Живая Пойма{% endblock %}
 
 {% block content %}
-<section class="news-list journal-index">
+<section class="section section--soft journal-index">
     <div class="container">
-        <header class="news-list-header">
-            <p class="section-kicker">Открыто и по шагам</p>
+        <header class="section-head">
+            <p class="eyebrow">Открыто и по шагам</p>
             <h1 class="section-title">{{ page.title }}</h1>
 
             {% if page.intro %}
-                <div class="section-intro">
-                    <p>{{ page.intro }}</p>
-                </div>
+                <p class="section-text">{{ page.intro }}</p>
             {% endif %}
         </header>
 
-        <div class="news-grid">
-            {% for entry in entries %}
-                <article class="news-card journal-card">
-                    <a class="news-card-link" href="{{ entry.url }}">
+        {% if entries %}
+            <div class="content-grid diary-grid">
+                {% for entry in entries %}
+                    <article class="soft-card diary-card">
                         {% if entry.cover_image %}
-                            <div class="news-card-media">
-                                {% image entry.cover_image fill-900x600 as card_image %}
+                            <a
+                                class="diary-card-image-link"
+                                href="{{ entry.url }}"
+                                aria-label="Открыть запись: {{ entry.title }}"
+                            >
+                                {% image entry.cover_image fill-960x640 as card_image %}
                                 <img
+                                    class="diary-card-image"
                                     src="{{ card_image.url }}"
-                                    alt="{{ entry.cover_image.title }}"
+                                    alt="{{ entry.cover_image.title|default:entry.title }}"
                                     width="{{ card_image.width }}"
                                     height="{{ card_image.height }}"
                                     loading="lazy"
                                 >
-                            </div>
+                            </a>
                         {% endif %}
 
-                        <div class="news-card-body">
-                            <p class="news-date">
-                                {% if entry.event_date %}
-                                    {{ entry.event_date|date:"d.m.Y" }}
-                                {% else %}
-                                    {{ entry.first_published_at|date:"d.m.Y" }}
-                                {% endif %}
-                            </p>
-
-                            <h2>{{ entry.title }}</h2>
-
-                            {% if entry.subtitle %}
-                                <p>{{ entry.subtitle }}</p>
+                        <p class="diary-meta">
+                            {% if entry.event_date %}
+                                {{ entry.event_date|date:"d E Y" }}
+                            {% else %}
+                                {{ entry.first_published_at|date:"d E Y" }}
                             {% endif %}
+                        </p>
 
-                            <span class="news-card-more">Читать запись</span>
+                        <h2 class="diary-card-title">
+                            <a href="{{ entry.url }}">{{ entry.title }}</a>
+                        </h2>
+
+                        {% if entry.subtitle %}
+                            <p class="section-text diary-card-text">
+                                {{ entry.subtitle }}
+                            </p>
+                        {% endif %}
+
+                        <div class="diary-card-footer">
+                            <a href="{{ entry.url }}" class="btn btn-secondary">
+                                Читать запись
+                            </a>
                         </div>
-                    </a>
-                </article>
-            {% empty %}
-                <div class="journal-empty">
-                    <p>Записей пока нет — дневник только начинает заполняться.</p>
-                </div>
-            {% endfor %}
-        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="soft-card diary-empty">
+                <h2>Первые записи уже скоро</h2>
+                <p class="section-text">
+                    Здесь появятся выезды, посадки, сезонные изменения, полевые заметки
+                    и наблюдения за тем, как территория меняется со временем.
+                </p>
+            </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

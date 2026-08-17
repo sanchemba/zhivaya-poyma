@@ -16,10 +16,7 @@ from .blocks import (
 
 
 class JournalIndexPage(Page):
-    intro = models.TextField(
-        blank=True,
-        verbose_name="Вводный текст",
-    )
+    intro = models.TextField(blank=True, verbose_name="Вводный текст")
 
     max_count = 1
     subpage_types = ["journal.JournalPage"]
@@ -32,7 +29,6 @@ class JournalIndexPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-
         context["entries"] = (
             JournalPage.objects
             .child_of(self)
@@ -40,7 +36,6 @@ class JournalIndexPage(Page):
             .public()
             .order_by("-first_published_at")
         )
-
         return context
 
 

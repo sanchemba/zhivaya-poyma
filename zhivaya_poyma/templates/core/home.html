@@ -130,55 +130,64 @@
     </div>
 
     {% if latest_journal %}
-      <div class="news-grid">
+      <div class="content-grid diary-grid">
           {% for post in latest_journal %}
-              <article class="news-card journal-card">
-                  <a class="news-card-link" href="{{ post.url }}">
-                      {% if post.cover_image %}
-                          <div class="news-card-media">
-                              {% load wagtailimages_tags %}
-                              {% image post.cover_image fill-900x600 as card_image %}
-                              <img
-                                  src="{{ card_image.url }}"
-                                  alt="{{ post.cover_image.title }}"
-                                  width="{{ card_image.width }}"
-                                  height="{{ card_image.height }}"
-                                  loading="lazy"
-                              >
-                          </div>
+              <article class="soft-card diary-card">
+                  {% if post.cover_image %}
+                      <a
+                          class="diary-card-image-link"
+                          href="{{ post.url }}"
+                          aria-label="Открыть запись: {{ post.title }}"
+                      >
+                          {% image post.cover_image fill-960x640 as card_image %}
+                          <img
+                              class="diary-card-image"
+                              src="{{ card_image.url }}"
+                              alt="{{ post.cover_image.title|default:post.title }}"
+                              width="{{ card_image.width }}"
+                              height="{{ card_image.height }}"
+                              loading="lazy"
+                          >
+                      </a>
+                  {% endif %}
+
+                  <p class="diary-meta">
+                      {% if post.event_date %}
+                          {{ post.event_date|date:"d E Y" }}
+                      {% else %}
+                          {{ post.first_published_at|date:"d E Y" }}
                       {% endif %}
+                  </p>
 
-                      <div class="news-card-body">
-                          <p class="news-date">
-                              {% if post.event_date %}
-                                  {{ post.event_date|date:"d.m.Y" }}
-                              {% else %}
-                                  {{ post.first_published_at|date:"d.m.Y" }}
-                              {% endif %}
-                          </p>
+                  <h3 class="diary-card-title">
+                      <a href="{{ post.url }}">{{ post.title }}</a>
+                  </h3>
 
-                          <h3>{{ post.title }}</h3>
+                  {% if post.subtitle %}
+                      <p class="section-text diary-card-text">
+                          {{ post.subtitle }}
+                      </p>
+                  {% endif %}
 
-                          {% if post.subtitle %}
-                              <p>{{ post.subtitle }}</p>
-                          {% endif %}
-
-                          <span class="news-card-more">Читать запись</span>
-                      </div>
-                  </a>
+                  <div class="diary-card-footer">
+                      <a href="{{ post.url }}" class="btn btn-secondary">
+                          Читать запись
+                      </a>
+                  </div>
               </article>
           {% endfor %}
       </div>
 
       <div class="section-actions">
-          <a class="button button-primary" href="/journal/">
-              Смотреть дневник
-          </a>
+          <a href="/journal/" class="btn btn-primary">Смотреть дневник</a>
       </div>
     {% else %}
-        <p class="journal-empty">
-            Здесь появятся первые записи о ходе проекта, наблюдения, фото и заметки с территории.
-        </p>
+      <div class="soft-card diary-empty">
+          <h3>Первые записи уже скоро</h3>
+          <p class="section-text">
+              Здесь появятся записи о ходе проекта, наблюдения, фото и заметки с территории.
+          </p>
+        </div>
     {% endif %}
   </div>
 </section>
