@@ -29,12 +29,13 @@ jobs:
               HostName ${{ secrets.HOST }}
               User ${{ secrets.USERNAME }}
               IdentityFile ~/.ssh/id_ed25519
-              ProxyCommand connect-proxy -H -R user:%p 95.31.40.11:3128 %h %p
+              ProxyCommand connect-proxy -H user@95.31.40.11:3128 %h %p
               StrictHostKeyChecking no
           EOF
           
-          # Интегрируем логин и пароль в команду прокси
+          # Интегрируем логин и пароль в команду прокси (разделитель '#')
           sed -i "s#user#emln_n:\$(cat ~/.ssh/proxy_password)#" ~/.ssh/config
+
 
       - name: Execute Remote Commands via Proxy
         run: |
