@@ -3,46 +3,62 @@
 
 {% block title %}{{ page.title }} — Живая Пойма{% endblock %}
 
+{% block meta_description %}
+    {% if page.subtitle %}
+        {{ page.subtitle|truncatechars:155 }}
+    {% else %}
+        Дневник проекта «Живая Пойма».
+    {% endif %}
+{% endblock %}
+
 {% block content %}
-<article class="news-detail journal-detail">
-    <header class="news-detail-header">
-        <div class="container news-content">
-            <p class="news-date">
+<section class="section section--soft" aria-labelledby="post-title">
+    <div class="container">
+        <article class="post-layout journal-post-layout">
+            <p class="diary-meta">
                 {% if page.event_date %}
-                    {{ page.event_date|date:"d.m.Y" }}
+                    {{ page.event_date|date:"d E Y" }}
                 {% else %}
-                    {{ page.first_published_at|date:"d.m.Y" }}
+                    {{ page.first_published_at|date:"d E Y" }}
                 {% endif %}
             </p>
 
-            <h1 class="news-detail-title">{{ page.title }}</h1>
+            <h1 class="section-title post-title" id="post-title">
+                {{ page.title }}
+            </h1>
 
             {% if page.subtitle %}
-                <p class="news-detail-excerpt">{{ page.subtitle }}</p>
+                <p class="post-excerpt">{{ page.subtitle }}</p>
             {% endif %}
-        </div>
-    </header>
 
-    {% if page.cover_image %}
-        <figure class="news-detail-cover container news-content">
-            {% image page.cover_image width-1200 as cover %}
-            <img
-                src="{{ cover.url }}"
-                alt="{{ page.cover_image.title }}"
-                width="{{ cover.width }}"
-                height="{{ cover.height }}"
-                loading="eager"
-                class="news-detail-cover-image"
-            >
-        </figure>
-    {% endif %}
+            {% if page.cover_image %}
+                <figure class="post-cover">
+                    {% image page.cover_image width-1400 as cover %}
+                    <img
+                        src="{{ cover.url }}"
+                        alt="{{ page.cover_image.title|default:page.title }}"
+                        width="{{ cover.width }}"
+                        height="{{ cover.height }}"
+                        loading="eager"
+                        class="post-cover-image"
+                    >
+                </figure>
+            {% endif %}
 
-    <div class="container news-content">
-        <div class="news-detail-body journal-stream">
-            {% for block in page.body %}
-                {% include_block block %}
-            {% endfor %}
-        </div>
+            {% if page.body %}
+                <div class="post-body journal-post-body">
+                    {% for block in page.body %}
+                        {% include_block block %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="post-footer">
+                <a href="/journal/" class="btn btn-secondary">
+                    Назад к дневнику
+                </a>
+            </div>
+        </article>
     </div>
-</article>
+</section>
 {% endblock %}
