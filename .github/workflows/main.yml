@@ -29,5 +29,6 @@ jobs:
             python manage.py migrate --noinput
             python manage.py collectstatic --noinput
             
-            touch zhivaya_poyma/wsgi.py
+            #touch zhivaya_poyma/wsgi.py
+            touch ../../tmp/restart.txt
           EOF
