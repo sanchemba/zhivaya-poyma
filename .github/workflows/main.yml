@@ -27,7 +27,7 @@ jobs:
             git pull origin main
             
             # Устанавливаем новые зависимости, если они появились
-            #pip install -r requirements.txt
+            pip install -r requirements.txt
             
             # Выполняем рутинные команды Django
             python manage.py check
