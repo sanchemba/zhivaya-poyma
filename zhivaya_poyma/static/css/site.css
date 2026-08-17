@@ -1286,3 +1286,20 @@ main,
 .journal-post-body .progress-note {
     margin-block: 2rem;
 }
+
+/* Карточки Wagtail-дневника: ровный кадр без искажений */
+
+.diary-card__image-link {
+    display: block;
+    aspect-ratio: 3 / 2;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.diary-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

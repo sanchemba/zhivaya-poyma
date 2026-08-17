@@ -21,13 +21,13 @@
                     <article class="soft-card diary-card">
                         {% if entry.cover_image %}
                             <a
-                                class="diary-card-image-link"
+                                class="diary-card__image-link"
                                 href="{{ entry.url }}"
                                 aria-label="Открыть запись: {{ entry.title }}"
                             >
                                 {% image entry.cover_image fill-960x640 as card_image %}
                                 <img
-                                    class="diary-card-image"
+                                    class="diary-card__image"
                                     src="{{ card_image.url }}"
                                     alt="{{ entry.cover_image.title|default:entry.title }}"
                                     width="{{ card_image.width }}"
@@ -50,7 +50,7 @@
                         </h2>
 
                         {% if entry.subtitle %}
-                            <p class="section-text diary-card-text">
+                            <p class="section-text diary-card__text">
                                 {{ entry.subtitle }}
                             </p>
                         {% endif %}
