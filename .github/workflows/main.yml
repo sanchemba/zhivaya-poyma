@@ -3,63 +3,31 @@ name: Deploy Open Floodplain Project
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    # Указываем GitHub запускать задачу именно на вашем домашнем сервере
+    runs-on: self-hosted
 
     steps:
-      - name: Install connect-proxy
-        run: sudo apt-get update && sudo apt-get install -y connect-proxy
-
-      - name: Setup SSH Key and Proxy Config
+      - name: Deploy to Jino directly
         run: |
+          # Настраиваем обычный SSH-ключ, так как мы уже под нужным IP
           mkdir -p ~/.ssh
-          # Записываем приватный ключ воркера
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           
-          # Создаем файл авторизации для прокси
-          echo "${{ secrets.PROXY_PASS }}" > ~/.ssh/proxy_password
-          
-          # Настраиваем конфигурацию SSH для автоматического хождения через ваш прокси
-          cat <<EOF > ~/.ssh/config
-          Host jino_server
-              HostName ${{ secrets.HOST }}
-              User ${{ secrets.USERNAME }}
-              IdentityFile ~/.ssh/id_ed25519
-              ProxyCommand connect-proxy -H user@95.31.40.11:3128 %h %p
-              StrictHostKeyChecking no
-          EOF
-          
-          # Интегрируем логин и пароль в команду прокси (разделитель '#')
-          sed -i "s#user#emln_n:\$(cat ~/.ssh/proxy_password)#" ~/.ssh/config
-
-
-      - name: Execute Remote Commands via Proxy
-        run: |
-          ssh jino_server << 'EOF'
-            # 1. Переходим в папку с проектом
-            cd /home/users/j/***/domains/xn--80aaepkivoi3n.xn--p1ai/zhivaya-poyma/zhivaya_poyma
-            
-            # 2. Активируем виртуальное окружение
+          # Подключаемся напрямую к Jino без всяких прокси
+          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+            cd /home/users/j/***/domains/xn--80aaepkivoi3n.xn--p1ai/zhivaya-poyma/zhivaya_poyma/
             source /home/users/j/***/domains/xn--80aaepkivoi3n.xn--p1ai/.venv/python313/bin/activate
-            
-            # 3. Подтягиваем изменения
             git pull origin main
-
-            # 4. Устанавливаем новые зависимости, если они появились
-            pip install -r requirements.txt
             
-            # 5. Выполняем рутинные команды Django
             python manage.py check
             python manage.py makemigrations --noinput
             python manage.py migrate --noinput
             python manage.py collectstatic --noinput
             
-            # 6. Эмуляция кнопки перезапуска
             touch zhivaya_poyma/wsgi.py
           EOF
-      
-      
