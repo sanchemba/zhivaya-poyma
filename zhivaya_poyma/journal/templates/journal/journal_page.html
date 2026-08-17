@@ -1,29 +1,48 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block title %}{{ page.title }} — Живая Пойма{% endblock %}
 
 {% block content %}
-<section class="journal-entry section">
-    <div class="container container-narrow">
-        <p class="section-kicker">Дневник проекта</p>
-        <h1 class="section-title">{{ page.title }}</h1>
+<article class="news-detail journal-detail">
+    <header class="news-detail-header">
+        <div class="container news-content">
+            <p class="news-date">
+                {% if page.event_date %}
+                    {{ page.event_date|date:"d.m.Y" }}
+                {% else %}
+                    {{ page.first_published_at|date:"d.m.Y" }}
+                {% endif %}
+            </p>
 
-        {% if page.subtitle %}
-            <p class="entry-subtitle">{{ page.subtitle }}</p>
-        {% endif %}
+            <h1 class="news-detail-title">{{ page.title }}</h1>
 
-        {% if page.lead %}
-            <div class="entry-lead">
-                <p>{{ page.lead }}</p>
-            </div>
-        {% endif %}
+            {% if page.subtitle %}
+                <p class="news-detail-excerpt">{{ page.subtitle }}</p>
+            {% endif %}
+        </div>
+    </header>
+
+    {% if page.cover_image %}
+        <figure class="news-detail-cover container news-content">
+            {% image page.cover_image width-1200 as cover %}
+            <img
+                src="{{ cover.url }}"
+                alt="{{ page.cover_image.title }}"
+                width="{{ cover.width }}"
+                height="{{ cover.height }}"
+                loading="eager"
+                class="news-detail-cover-image"
+            >
+        </figure>
+    {% endif %}
+
+    <div class="container news-content">
+        <div class="news-detail-body journal-stream">
+            {% for block in page.body %}
+                {% include_block block %}
+            {% endfor %}
+        </div>
     </div>
-
-    <div class="container container-narrow entry-stream">
-        {% for block in page.body %}
-            {% include_block block %}
-        {% endfor %}
-    </div>
-</section>
+</article>
 {% endblock %}

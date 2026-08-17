@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load wagtailimages_tags %}
 {% load static %}
 
 {% block title %}Живая Пойма{% endblock %}
@@ -128,41 +129,56 @@
       </p>
     </div>
 
-    {% if latest_news %}
-      <div class="content-grid diary-grid">
-        {% for post in latest_news %}
-          <article class="soft-card diary-card">
-            <p class="diary-meta">{{ post.published_at|date:"d E Y" }}</p>
+    {% if latest_journal %}
+      <div class="news-grid">
+          {% for post in latest_journal %}
+              <article class="news-card journal-card">
+                  <a class="news-card-link" href="{{ post.url }}">
+                      {% if post.cover_image %}
+                          <div class="news-card-media">
+                              {% load wagtailimages_tags %}
+                              {% image post.cover_image fill-900x600 as card_image %}
+                              <img
+                                  src="{{ card_image.url }}"
+                                  alt="{{ post.cover_image.title }}"
+                                  width="{{ card_image.width }}"
+                                  height="{{ card_image.height }}"
+                                  loading="lazy"
+                              >
+                          </div>
+                      {% endif %}
 
-            <h3 class="diary-card__title">
-              <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-            </h3>
+                      <div class="news-card-body">
+                          <p class="news-date">
+                              {% if post.event_date %}
+                                  {{ post.event_date|date:"d.m.Y" }}
+                              {% else %}
+                                  {{ post.first_published_at|date:"d.m.Y" }}
+                              {% endif %}
+                          </p>
 
-            {% if post.excerpt %}
-              <p class="section-text diary-card__text">{{ post.excerpt }}</p>
-            {% else %}
-              <p class="section-text diary-card__text">
-                {{ post.body|striptags|truncatechars:180 }}
-              </p>
-            {% endif %}
+                          <h3>{{ post.title }}</h3>
 
-            <div class="diary-card__footer">
-              <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Читать запись</a>
-            </div>
-          </article>
-        {% endfor %}
+                          {% if post.subtitle %}
+                              <p>{{ post.subtitle }}</p>
+                          {% endif %}
+
+                          <span class="news-card-more">Читать запись</span>
+                      </div>
+                  </a>
+              </article>
+          {% endfor %}
       </div>
 
-      <div style="margin-top: 32px;">
-        <a href="{% url 'news:news_list' %}" class="btn btn-primary">Перейти в дневник</a>
+      <div class="section-actions">
+          <a class="button button-primary" href="/journal/">
+              Смотреть дневник
+          </a>
       </div>
     {% else %}
-      <div class="soft-card diary-empty">
-        <h3>Дневник скоро наполнится</h3>
-        <p class="section-text">
-          Здесь появятся первые записи о ходе проекта, наблюдения, фото и заметки с территории.
+        <p class="journal-empty">
+            Здесь появятся первые записи о ходе проекта, наблюдения, фото и заметки с территории.
         </p>
-      </div>
     {% endif %}
   </div>
 </section>

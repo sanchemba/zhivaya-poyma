@@ -1100,3 +1100,123 @@ main,
     width: 100%;
   }
 }
+
+/* Wagtail journal: inherits the existing news editorial rhythm */
+
+.journal-stream {
+    width: 100%;
+}
+
+.journal-stream > * + * {
+    margin-top: var(--space-8, 2rem);
+}
+
+.journal-stream p,
+.journal-stream li {
+    max-width: 68ch;
+}
+
+.journal-stream .rich-text,
+.journal-stream .block-paragraph {
+    max-width: 68ch;
+}
+
+.journal-stream h2,
+.journal-stream h3,
+.journal-stream h4 {
+    max-width: 28ch;
+    margin-top: var(--space-12, 3rem);
+    margin-bottom: var(--space-4, 1rem);
+}
+
+.journal-stream .entry-figure {
+    max-width: 100%;
+    margin: var(--space-10, 2.5rem) 0;
+}
+
+.journal-stream .entry-image,
+.news-detail-cover-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius-lg, 0.75rem);
+}
+
+.journal-stream .entry-figcaption {
+    max-width: 68ch;
+    margin-top: var(--space-3, 0.75rem);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm, 0.95rem);
+    line-height: 1.5;
+}
+
+.journal-stream .content-section-heading {
+    max-width: 68ch;
+    margin-top: var(--space-12, 3rem);
+}
+
+.journal-stream .content-section-heading h2 {
+    margin-top: 0;
+}
+
+.journal-stream .observation-block,
+.journal-stream .progress-note {
+    max-width: 68ch;
+    padding: var(--space-6, 1.5rem);
+    background: var(--color-surface-offset);
+    border: 1px solid oklch(from var(--color-text) l c h / 0.10);
+    border-radius: var(--radius-lg, 0.75rem);
+}
+
+.journal-stream .observation-block h2,
+.journal-stream .progress-note h2 {
+    margin-top: 0;
+    margin-bottom: var(--space-3, 0.75rem);
+}
+
+.journal-stream .observation-block p + p,
+.journal-stream .progress-note p + p {
+    margin-top: var(--space-3, 0.75rem);
+}
+
+.journal-stream .observation-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3, 0.75rem);
+    margin-top: var(--space-5, 1.25rem);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm, 0.95rem);
+}
+
+.journal-stream .observation-meta span + span::before {
+    content: "·";
+    margin-right: var(--space-3, 0.75rem);
+}
+
+.journal-stream .entry-cta {
+    max-width: 68ch;
+    margin-top: var(--space-10, 2.5rem);
+}
+
+.journal-stream .cta-note {
+    margin-top: var(--space-3, 0.75rem);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm, 0.95rem);
+}
+
+@media (max-width: 767px) {
+    .journal-stream > * + * {
+        margin-top: var(--space-6, 1.5rem);
+    }
+
+    .journal-stream .entry-figure {
+        margin-block: var(--space-8, 2rem);
+    }
+
+    .journal-stream .observation-block,
+    .journal-stream .progress-note {
+        padding: var(--space-5, 1.25rem);
+    }
+}

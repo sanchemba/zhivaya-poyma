@@ -1,36 +1,62 @@
 {% extends "base.html" %}
+{% load wagtailimages_tags %}
 
-{% block title %}Дневник проекта — Живая Пойма{% endblock %}
+{% block title %}{{ page.title }} — Живая Пойма{% endblock %}
 
 {% block content %}
-<section class="journal-index section">
+<section class="news-list journal-index">
     <div class="container">
-        <p class="section-kicker">Дневник проекта</p>
-        <h1 class="section-title">{{ page.title }}</h1>
+        <header class="news-list-header">
+            <p class="section-kicker">Открыто и по шагам</p>
+            <h1 class="section-title">{{ page.title }}</h1>
 
-        {% if page.intro %}
-            <div class="section-intro">
-                <p>{{ page.intro }}</p>
-            </div>
-        {% endif %}
+            {% if page.intro %}
+                <div class="section-intro">
+                    <p>{{ page.intro }}</p>
+                </div>
+            {% endif %}
+        </header>
 
         <div class="news-grid">
             {% for entry in entries %}
-                <article class="news-card">
+                <article class="news-card journal-card">
                     <a class="news-card-link" href="{{ entry.url }}">
+                        {% if entry.cover_image %}
+                            <div class="news-card-media">
+                                {% image entry.cover_image fill-900x600 as card_image %}
+                                <img
+                                    src="{{ card_image.url }}"
+                                    alt="{{ entry.cover_image.title }}"
+                                    width="{{ card_image.width }}"
+                                    height="{{ card_image.height }}"
+                                    loading="lazy"
+                                >
+                            </div>
+                        {% endif %}
+
                         <div class="news-card-body">
-                            <p class="news-date">{{ entry.first_published_at|date:"d.m.Y" }}</p>
+                            <p class="news-date">
+                                {% if entry.event_date %}
+                                    {{ entry.event_date|date:"d.m.Y" }}
+                                {% else %}
+                                    {{ entry.first_published_at|date:"d.m.Y" }}
+                                {% endif %}
+                            </p>
+
                             <h2>{{ entry.title }}</h2>
+
                             {% if entry.subtitle %}
                                 <p>{{ entry.subtitle }}</p>
-                            {% elif entry.lead %}
-                                <p>{{ entry.lead|truncatechars:180 }}</p>
                             {% endif %}
+
+                            <span class="news-card-more">Читать запись</span>
                         </div>
                     </a>
                 </article>
             {% empty %}
-                <p>Пока записей нет.</p>
+                <div class="journal-empty">
+                    <p>Записей пока нет — дневник только начинает заполняться.</p>
+                </div>
             {% endfor %}
         </div>
     </div>

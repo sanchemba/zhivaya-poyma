@@ -1,21 +1,25 @@
 from django.db import models
 
-from wagtail.models import Page
-from wagtail.fields import StreamField
-from wagtail.admin.panels import FieldPanel
 from wagtail import blocks
+from wagtail.admin.panels import FieldPanel
+from wagtail.fields import StreamField
+from wagtail.images import get_image_model_string
+from wagtail.models import Page
 
 from .blocks import (
-    SectionHeadingBlock,
+    CTABlock,
     ImageWithCaptionBlock,
     ObservationBlock,
     ProgressNoteBlock,
-    CTABlock,
+    SectionHeadingBlock,
 )
 
 
 class JournalIndexPage(Page):
-    intro = models.TextField(blank=True, verbose_name="Вводный текст")
+    intro = models.TextField(
+        blank=True,
+        verbose_name="Вводный текст",
+    )
 
     max_count = 1
     subpage_types = ["journal.JournalPage"]
@@ -28,24 +32,63 @@ class JournalIndexPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
+
         context["entries"] = (
-            JournalPage.objects.live()
-            .descendant_of(self)
+            JournalPage.objects
+            .child_of(self)
+            .live()
+            .public()
             .order_by("-first_published_at")
         )
+
         return context
 
 
 class JournalPage(Page):
-    subtitle = models.CharField(max_length=220, blank=True, verbose_name="Подзаголовок")
-    lead = models.TextField(blank=True, verbose_name="Лид")
+    subtitle = models.CharField(
+        max_length=220,
+        blank=True,
+        verbose_name="Краткое описание",
+    )
+
+    event_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name="Дата записи",
+        help_text=(
+            "Дата события или наблюдения. "
+            "Если не заполнена, будет показана дата публикации."
+        ),
+    )
+
+    cover_image = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Обложка",
+    )
 
     body = StreamField(
         [
+            (
+                "paragraph",
+                blocks.RichTextBlock(
+                    features=[
+                        "h3",
+                        "h4",
+                        "bold",
+                        "italic",
+                        "link",
+                        "ol",
+                        "ul",
+                        "blockquote",
+                    ],
+                    label="Текст",
+                ),
+            ),
             ("heading_section", SectionHeadingBlock()),
-            ("paragraph", blocks.RichTextBlock(features=[
-                "h3", "h4", "bold", "italic", "link", "ol", "ul", "blockquote"
-            ])),
             ("image_with_caption", ImageWithCaptionBlock()),
             ("observation", ObservationBlock()),
             ("progress_note", ProgressNoteBlock()),
@@ -61,7 +104,8 @@ class JournalPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("subtitle"),
-        FieldPanel("lead"),
+        FieldPanel("event_date"),
+        FieldPanel("cover_image"),
         FieldPanel("body"),
     ]
 
