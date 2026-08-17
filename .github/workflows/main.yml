@@ -34,7 +34,7 @@ jobs:
           EOF
           
           # Интегрируем логин и пароль в команду прокси
-          sed -i "s/user/emln_n:\$(cat ~/.ssh/proxy_password)/" ~/.ssh/config
+          sed -i "s#user#emln_n:\$(cat ~/.ssh/proxy_password)#" ~/.ssh/config
 
       - name: Execute Remote Commands via Proxy
         run: |
