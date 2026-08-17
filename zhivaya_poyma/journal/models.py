@@ -41,7 +41,7 @@ class JournalIndexPage(Page):
 
 class JournalPage(Page):
     subtitle = models.CharField(
-        max_length=220,
+        max_length=1000,
         blank=True,
         verbose_name="Краткое описание",
     )
