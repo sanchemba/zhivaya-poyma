@@ -1,0 +1,17 @@
+<div class="entry-video entry-video--external">
+    <div class="entry-video-frame">
+        {{ self.video }}
+    </div>
+
+    {% if self.caption or self.credit %}
+        <p class="entry-figcaption">
+            {% if self.caption %}
+                <span>{{ self.caption }}</span>
+            {% endif %}
+
+            {% if self.credit %}
+                <span>{{ self.credit }}</span>
+            {% endif %}
+        </p>
+    {% endif %}
+</div>

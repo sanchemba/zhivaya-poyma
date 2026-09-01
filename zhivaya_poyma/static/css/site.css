@@ -661,10 +661,11 @@ main,
 }
 
 .post-body {
-  max-width: 720px;
+  max-width: 800px;
   font-size: 18px;
   line-height: 1.85;
   color: var(--text);
+  margin-left: 30px;
 }
 
 .post-body p {
@@ -850,7 +851,7 @@ main,
 }
 
 /* =========================
-   Wagtail styles 
+   Wagtail styles
    for entries
    ========================= */
 
@@ -1229,13 +1230,13 @@ main,
 
 .journal-post-body p,
 .journal-post-body li {
-    max-width: 68ch;
+    max-width: 80ch;
 }
 
 .journal-post-body h2,
 .journal-post-body h3,
 .journal-post-body h4 {
-    max-width: 28ch;
+    /*max-width: 28ch;*/
     margin-top: 2.75rem;
     margin-bottom: 1rem;
 }
@@ -1302,4 +1303,38 @@ main,
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Видео внутри Wagtail-записей */
+
+.journal-post-body .entry-video {
+    max-width: 100%;
+    margin: 2rem 0;
+}
+
+.entry-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--surface-deep);
+}
+
+.entry-video-frame iframe,
+.entry-video-frame video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.entry-video-player {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    background: var(--surface-deep);
 }

@@ -1,5 +1,6 @@
 from wagtail import blocks
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageChooserBlock, EmbedBlock
+from wagtail.documents.blocks import DocumentChooserBlock
 
 
 class SectionHeadingBlock(blocks.StructBlock):
@@ -57,3 +58,65 @@ class CTABlock(blocks.StructBlock):
         template = "blocks/cta_block.html"
         icon = "link"
         label = "Кнопка / призыв"
+
+class ExternalVideoBlock(blocks.StructBlock):
+    video = EmbedBlock(
+        required=True,
+        max_width=1200,
+        max_height=800,
+        label="Ссылка на видео",
+        help_text="Вставьте ссылку на YouTube, VK Видео, RuTube или другой поддерживаемый сервис.",
+    )
+    caption = blocks.CharBlock(
+        required=False,
+        max_length=500,
+        label="Подпись",
+    )
+    credit = blocks.CharBlock(
+        required=False,
+        max_length=300,
+        label="Автор / источник",
+    )
+
+    class Meta:
+        template = "blocks/external_video.html"
+        icon = "media"
+        label = "Видео со внешней платформы"
+
+class LocalVideoBlock(blocks.StructBlock):
+    video = DocumentChooserBlock(
+        required=True,
+        label="Видео файл",
+        help_text="Загрузите MP4 или WebM в раздел Documents Wagtail.",
+    )
+    poster = ImageChooserBlock(
+        required=False,
+        label="Постер",
+        help_text="Статичная картинка до запуска видео. Рекомендуется для длинных роликов.",
+    )
+    caption = blocks.CharBlock(
+        required=False,
+        max_length=500,
+        label="Подпись",
+    )
+    credit = blocks.CharBlock(
+        required=False,
+        max_length=300,
+        label="Автор / источник",
+    )
+    autoplay = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Запускать автоматически без звука",
+    )
+    loop = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Повторять видео",
+    )
+
+    class Meta:
+        template = "blocks/local_video.html"
+        icon = "media"
+        label = "Видео файл"
+

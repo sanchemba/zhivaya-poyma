@@ -12,8 +12,11 @@ from .blocks import (
     ObservationBlock,
     ProgressNoteBlock,
     SectionHeadingBlock,
+    ExternalVideoBlock,
+    LocalVideoBlock
 )
 
+from pathlib import Path
 
 class JournalIndexPage(Page):
     intro = models.TextField(blank=True, verbose_name="Вводный текст")
@@ -40,6 +43,13 @@ class JournalIndexPage(Page):
 
 
 class JournalPage(Page):
+
+    @property
+    def cover_is_animated_gif(self):
+        if not self.cover_image:
+            return False
+        return Path(self.cover_image.file.name).suffix.lower() == ".gif"
+
     subtitle = models.CharField(
         max_length=1000,
         blank=True,
@@ -65,6 +75,18 @@ class JournalPage(Page):
         verbose_name="Обложка",
     )
 
+    cover_caption = models.CharField(
+        max_length=500,
+        blank=True,
+        verbose_name="Подпись к обложке",
+    )
+
+    cover_credit = models.CharField(
+        max_length=300,
+        blank=True,
+        verbose_name="Автор / источник обложки",
+    )
+
     body = StreamField(
         [
             (
@@ -88,6 +110,8 @@ class JournalPage(Page):
             ("observation", ObservationBlock()),
             ("progress_note", ProgressNoteBlock()),
             ("cta", CTABlock()),
+            ("external_video", ExternalVideoBlock()),
+            ("local_video", LocalVideoBlock()),
         ],
         use_json_field=True,
         blank=True,
@@ -101,6 +125,8 @@ class JournalPage(Page):
         FieldPanel("subtitle"),
         FieldPanel("event_date"),
         FieldPanel("cover_image"),
+        FieldPanel("cover_caption"),
+        FieldPanel("cover_credit"),
         FieldPanel("body"),
     ]
 

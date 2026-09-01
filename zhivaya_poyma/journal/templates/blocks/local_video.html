@@ -1,0 +1,29 @@
+{% load wagtailimages_tags %}
+
+<figure class="entry-video entry-video--local">
+    <video
+        class="entry-video-player"
+        {% if self.autoplay %}autoplay muted playsinline{% else %}controls playsinline{% endif %}
+        {% if self.loop %}loop{% endif %}
+        preload="metadata"
+        {% if self.poster %}
+            {% image self.poster width-1400 as poster %}
+            poster="{{ poster.url }}"
+        {% endif %}
+    >
+        <source src="{{ self.video.url }}" type="{{ self.video.file.content_type|default:'video/mp4' }}">
+        Ваш браузер не поддерживает воспроизведение видео.
+    </video>
+
+    {% if self.caption or self.credit %}
+        <figcaption class="entry-figcaption">
+            {% if self.caption %}
+                <span>{{ self.caption }}</span>
+            {% endif %}
+
+            {% if self.credit %}
+                <span>{{ self.credit }}</span>
+            {% endif %}
+        </figcaption>
+    {% endif %}
+</figure>

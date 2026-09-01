@@ -33,21 +33,38 @@
 
             {% if page.cover_image %}
                 <figure class="post-cover">
-                    {% image page.cover_image width-1400 as cover %}
-                    <img
-                        src="{{ cover.url }}"
-                        alt="{{ page.cover_image.title|default:page.title }}"
-                        width="{{ cover.width }}"
-                        height="{{ cover.height }}"
-                        loading="eager"
-                        class="post-cover-image"
-                    >
-                    <figcaption class="entry-figcaption">
-                        {% if cover.caption %}<span>{{ cover.caption }}</span>{% endif %}
-                        {% if cover.credit %}<span>{{ cover.credit }}</span>{% endif %}
-                    </figcaption>
-                </figure>
+                    {% if page.cover_is_animated_gif %}
+                        <img
+                            src="{{ page.cover_image.file.url }}"
+                            alt="{{ page.cover_caption|default:page.cover_image.title|default:page.title }}"
+                            width="{{ page.cover_image.width }}"
+                            height="{{ page.cover_image.height }}"
+                            loading="eager"
+                            class="post-cover-image"
+                        >
+                    {% else %}
+                        {% image page.cover_image width-1400 as cover %}
+                        <img
+                            src="{{ cover.url }}"
+                            alt="{{ page.cover_caption|default:page.cover_image.title|default:page.title }}"
+                            width="{{ cover.width }}"
+                            height="{{ cover.height }}"
+                            loading="eager"
+                            class="post-cover-image"
+                        >
+                    {% endif %}
 
+                    {% if page.cover_caption or page.cover_credit %}
+                        <figcaption class="entry-figcaption">
+                            {% if page.cover_caption %}
+                                <span>{{ page.cover_caption }}</span>
+                            {% endif %}
+                            {% if page.cover_credit %}
+                                <span>{{ page.cover_credit }}</span>
+                            {% endif %}
+                        </figcaption>
+                    {% endif %}
+                </figure>
             {% endif %}
 
             {% if page.body %}
