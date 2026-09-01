@@ -1,5 +1,5 @@
 from wagtail import blocks
-from wagtail.images.blocks import ImageChooserBlock,
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.documents.blocks import DocumentChooserBlock
 
