@@ -37,4 +37,7 @@ jobs:
 
             # Перезапускаем веб-сервер (gunicorn, uwsgi или touch wsgi.py)
             # Например, для перезапуска Django на Jino Спектр часто достаточно:
+            ls -la ../../tmp
             touch ../../tmp/restart.txt
+            echo "Work done"
+
