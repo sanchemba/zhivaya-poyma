@@ -30,5 +30,9 @@ jobs:
             python manage.py collectstatic --noinput
             
             #touch zhivaya_poyma/wsgi.py
+            #touch ../../tmp/restart.txt
+            ls -la ../../tmp
             touch ../../tmp/restart.txt
+            echo "Work done"
+
           EOF
