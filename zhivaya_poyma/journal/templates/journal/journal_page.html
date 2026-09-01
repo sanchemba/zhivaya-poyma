@@ -42,7 +42,12 @@
                         loading="eager"
                         class="post-cover-image"
                     >
+                    <figcaption class="entry-figcaption">
+                        {% if cover.caption %}<span>{{ cover.caption }}</span>{% endif %}
+                        {% if cover.credit %}<span>{{ cover.credit }}</span>{% endif %}
+                    </figcaption>
                 </figure>
+
             {% endif %}
 
             {% if page.body %}
