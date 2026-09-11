@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    # Указываем GitHub запускать задачу именно на вашем домашнем сервере
+    # Указываем GitHub запускать задачу именно на домашнем сервере
     runs-on: self-hosted
 
     steps:
@@ -22,7 +22,11 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
             cd /home/users/j/***/domains/xn--80aaepkivoi3n.xn--p1ai/zhivaya-poyma/zhivaya_poyma/
             source /home/users/j/***/domains/xn--80aaepkivoi3n.xn--p1ai/.venv/python313/bin/activate
+            
             git pull origin main
+            
+            # Устанавливаем новые зависимости, если они появились
+            pip install -r requirements.txt
             
             python manage.py check
             python manage.py makemigrations --noinput
