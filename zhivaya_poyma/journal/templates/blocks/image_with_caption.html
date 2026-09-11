@@ -1,20 +1,38 @@
 {% load wagtailimages_tags %}
 
 <figure class="entry-figure">
-    {% image self.image width-1200 as img %}
-    <img
-        src="{{ img.url }}"
-        alt="{{ self.caption|default:self.image.title }}"
-        width="{{ img.width }}"
-        height="{{ img.height }}"
-        loading="lazy"
-        class="entry-image"
-    >
+    {% with file_name=self.image.file.name|lower %}
+        {% if file_name|slice:"-4:" == ".gif" %}
+            <img
+                src="{{ self.image.file.url }}"
+                alt="{{ self.caption|default:self.image.title }}"
+                width="{{ self.image.width }}"
+                height="{{ self.image.height }}"
+                loading="lazy"
+                class="entry-image"
+            >
+        {% else %}
+            {% image self.image width-1200 as image %}
+            <img
+                src="{{ image.url }}"
+                alt="{{ self.caption|default:self.image.title }}"
+                width="{{ image.width }}"
+                height="{{ image.height }}"
+                loading="lazy"
+                class="entry-image"
+            >
+        {% endif %}
+    {% endwith %}
 
     {% if self.caption or self.credit %}
         <figcaption class="entry-figcaption">
-            {% if self.caption %}<span>{{ self.caption }}</span>{% endif %}
-            {% if self.credit %}<span>{{ self.credit }}</span>{% endif %}
+            {% if self.caption %}
+                <span>{{ self.caption }}</span>
+            {% endif %}
+
+            {% if self.credit %}
+                <span>{{ self.credit }}</span>
+            {% endif %}
         </figcaption>
     {% endif %}
 </figure>
