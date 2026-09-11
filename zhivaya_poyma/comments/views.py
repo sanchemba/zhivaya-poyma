@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
-from ratelimit.decorators import ratelimit
+
+from django_ratelimit.decorators import ratelimit
 
 from journal.models import JournalPage
 from .forms import CommentForm
