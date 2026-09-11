@@ -75,6 +75,82 @@
                 </div>
             {% endif %}
 
+
+            {% if page.allow_comments %}
+                <section class="post-comments" id="comments" aria-labelledby="comments-title">
+                    <h2 id="comments-title">Комментарии</h2>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="comment-message {{ message.tags }}">
+                                {{ message }}
+                            </p>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if approved_comments %}
+                        <div class="comment-list">
+                            {% for comment in approved_comments %}
+                                <article class="comment">
+                                    <header class="comment-header">
+                                        <p class="comment-author">{{ comment.author_name }}</p>
+                                        <time datetime="{{ comment.created_at|date:'c' }}">
+                                            {{ comment.created_at|date:"d E Y" }}
+                                        </time>
+                                    </header>
+                                    <p class="comment-text">{{ comment.text|linebreaksbr }}</p>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="comment-empty">
+                            Пока нет опубликованных комментариев. Можно начать разговор.
+                        </p>
+                    {% endif %}
+
+                    <form
+                        class="comment-form"
+                        method="post"
+                        action="{% url 'comments:post' page.id %}"
+                    >
+                        {% csrf_token %}
+
+                        <div class="hp-field" aria-hidden="true">
+                            <label for="{{ comment_form.website.id_for_label }}">
+                                Не заполняйте это поле
+                            </label>
+                            {{ comment_form.website }}
+                        </div>
+
+                        <div class="form-field">
+                            <label for="{{ comment_form.author_name.id_for_label }}">
+                                Имя
+                            </label>
+                            {{ comment_form.author_name }}
+                        </div>
+
+                        <div class="form-field">
+                            <label for="{{ comment_form.author_email.id_for_label }}">
+                                E-mail <span>необязательно, не публикуется</span>
+                            </label>
+                            {{ comment_form.author_email }}
+                        </div>
+
+                        <div class="form-field">
+                            <label for="{{ comment_form.text.id_for_label }}">
+                                Ваш комментарий
+                            </label>
+                            {{ comment_form.text }}
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">
+                            Отправить на модерацию
+                        </button>
+                    </form>
+                </section>
+            {% endif %}
+
+
             <div class="post-footer">
                 <a href="/news/" class="btn btn-secondary">
                     Назад к дневнику

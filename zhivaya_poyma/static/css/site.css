@@ -1338,3 +1338,99 @@ main,
     border-radius: var(--radius-lg);
     background: var(--surface-deep);
 }
+
+/* Комментарии: спокойный редакционный блок */
+
+.post-comments {
+    max-width: 68ch;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid oklch(from var(--text) l c h / 0.12);
+}
+
+.post-comments h2 {
+    margin-bottom: 1.5rem;
+}
+
+.comment-list {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.comment {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid oklch(from var(--text) l c h / 0.10);
+}
+
+.comment-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+}
+
+.comment-author {
+    font-weight: 600;
+}
+
+.comment-header time,
+.comment-empty,
+.comment-message {
+    color: var(--text-faint);
+    font-size: 0.875rem;
+}
+
+.comment-text {
+    white-space: normal;
+}
+
+.comment-form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.form-field {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.form-field label span {
+    color: var(--text-faint);
+    font-weight: 400;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 0.75rem 0.875rem;
+    border: 1px solid oklch(from var(--text) l c h / 0.18);
+    border-radius: 0.5rem;
+    background: var(--surface);
+    color: var(--text);
+}
+
+.form-field textarea {
+    min-height: 9rem;
+    resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.comment-form .btn {
+    justify-self: start;
+}

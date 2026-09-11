@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "core",
     "news",
     "leads",
+    "comments",
 
     # wagtail
     "wagtail.contrib.forms",

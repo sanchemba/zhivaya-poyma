@@ -44,11 +44,26 @@ class JournalIndexPage(Page):
 
 class JournalPage(Page):
 
+    allow_comments = models.BooleanField(
+        "Разрешить комментарии",
+        default=True,
+    )
+
     @property
     def cover_is_animated_gif(self):
         if not self.cover_image:
             return False
         return Path(self.cover_image.file.name).suffix.lower() == ".gif"
+
+    def get_context(self, request):
+        from comments.forms import CommentForm
+
+        context = super().get_context(request)
+        context["approved_comments"] = self.comments.filter(
+            is_approved=True
+        ).order_by("created_at")
+        context["comment_form"] = CommentForm()
+        return context
 
     subtitle = models.CharField(
         max_length=1000,
@@ -127,6 +142,7 @@ class JournalPage(Page):
         FieldPanel("cover_image"),
         FieldPanel("cover_caption"),
         FieldPanel("cover_credit"),
+        FieldPanel("allow_comments"),
         FieldPanel("body"),
     ]
 

@@ -16,6 +16,8 @@ urlpatterns = [
     path("cms/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
 
+    path("comments/", include("comments.urls")),
+
     path("news/", include(wagtail_urls)),
 ]
 
