@@ -31,6 +31,13 @@
                 <p class="post-excerpt">{{ page.subtitle }}</p>
             {% endif %}
 
+            {% if page.author_name %}
+                <p class="post-author">
+                    <span class="post-author__label">Текст:</span>
+                    {{ page.author_name }}
+                </p>
+            {% endif %}
+
             {% if page.cover_image %}
                 <figure class="post-cover">
                     {% if page.cover_is_animated_gif %}

@@ -1433,3 +1433,15 @@ main,
 .comment-form .btn {
     justify-self: start;
 }
+
+.post-author {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.post-author__label {
+    color: var(--text-faint);
+}

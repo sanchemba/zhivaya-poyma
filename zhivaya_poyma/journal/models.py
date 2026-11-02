@@ -81,6 +81,13 @@ class JournalPage(Page):
         ),
     )
 
+    author_name = models.CharField(
+        "Автор текста",
+        max_length=200,
+        blank=True,
+        help_text="Необязательно. Если поле пустое, подпись автора не показывается.",
+    )
+
     cover_image = models.ForeignKey(
         get_image_model_string(),
         null=True,
@@ -139,11 +146,13 @@ class JournalPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("subtitle"),
         FieldPanel("event_date"),
+        FieldPanel("author_name"),
         FieldPanel("cover_image"),
         FieldPanel("cover_caption"),
         FieldPanel("cover_credit"),
         FieldPanel("allow_comments"),
         FieldPanel("body"),
+
     ]
 
     template = "journal/journal_page.html"
