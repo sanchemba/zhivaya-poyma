@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
     'www.живаяпойма.рф',
     'xn--80aaepkivoi3n.xn--p1ai',
     'www.xn--80aaepkivoi3n.xn--p1ai',
+    'rehabi.ru',
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://xn--80aaepkivoi3n.xn--p1ai",
